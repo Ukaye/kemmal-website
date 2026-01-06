@@ -1,36 +1,135 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Kemmal Onuoha Company Website
 
-## Getting Started
+A modern, professional business consulting website built with Next.js 14, Tailwind CSS, and Framer Motion.
 
-First, run the development server:
+## 🚀 Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The website will be available at `http://localhost:3000` (or the next available port).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📁 Project Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+kemmal-website/
+├── app/                      # Next.js App Router pages
+│   ├── page.tsx             # Home page
+│   ├── who-we-are/          # About page
+│   ├── what-we-do/          # Services page
+│   ├── programs-events/      # Events page
+│   ├── book-consultation/   # Consultation form
+│   ├── register/[eventId]/   # Event registration
+│   └── confirmation/         # Success page
+├── components/
+│   ├── layout/              # Header, Footer
+│   ├── sections/            # Page sections (Hero, CTA, etc.)
+│   ├── ui/                  # Reusable UI components
+│   └── forms/               # Form components
+├── lib/
+│   └── emailjs.ts           # EmailJS integration
+└── public/
+    └── images/              # Static images
+```
 
-## Learn More
+## 🎨 Design System
 
-To learn more about Next.js, take a look at the following resources:
+### Colors
+- **Primary Dark**: `#1A2332` (Navy)
+- **Primary Gold**: `#D4A43C` (Golden Yellow)
+- **Background Light**: `#FFFFFF`
+- **Background Section**: `#F9FAFB`
+- **Text Dark**: `#1A2332`
+- **Text Light**: `#6B7280`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Typography
+- **Font**: DM Sans (Google Fonts)
+- **Headings**: Bold, responsive sizing
+- **Body**: Regular weight, optimized for readability
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📧 EmailJS Setup
 
-## Deploy on Vercel
+To enable form submissions:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Sign up at [EmailJS](https://www.emailjs.com/)
+2. Create email templates for:
+   - Consultation form
+   - Event registration
+3. Add your credentials to `.env.local`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```env
+NEXT_PUBLIC_EMAILJS_SERVICE_ID=your_service_id
+NEXT_PUBLIC_EMAILJS_CONSULTATION_TEMPLATE_ID=consultation_template
+NEXT_PUBLIC_EMAILJS_EVENT_TEMPLATE_ID=event_template
+NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_public_key
+```
+
+## 🚢 Deployment
+
+### Vercel (Recommended)
+
+```bash
+npm i -g vercel
+vercel
+```
+
+The site is optimized for Vercel deployment with:
+- Automatic HTTPS
+- Edge network optimization
+- Serverless functions support
+
+## ✨ Features
+
+- ✅ Responsive design (mobile-first)
+- ✅ Smooth animations (Framer Motion)
+- ✅ Form validation
+- ✅ EmailJS integration
+- ✅ SEO optimized
+- ✅ Accessible components
+- ✅ Dark/Gold color scheme
+- ✅ Modern UI/UX
+
+## 📄 Pages
+
+1. **Home** (`/`) - Hero, services preview, testimonials, events
+2. **Who We Are** (`/who-we-are`) - Company story, founder profile
+3. **What We Do** (`/what-we-do`) - Detailed service offerings
+4. **Programs & Events** (`/programs-events`) - Event listings
+5. **Book Consultation** (`/book-consultation`) - Contact form
+6. **Event Registration** (`/register/[eventId]`) - Dynamic registration
+7. **Confirmation** (`/confirmation`) - Success page
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 14 (App Router)
+- **Styling**: Tailwind CSS v4
+- **Animations**: Framer Motion
+- **Icons**: Lucide React
+- **Forms**: EmailJS
+- **TypeScript**: Full type safety
+
+## 📝 Notes
+
+- Replace placeholder images in `public/images/` with actual assets
+- Update contact information in Footer component
+- Customize event data in `app/programs-events/page.tsx`
+- Add real client logos to ClientLogos component
+
+## 📞 Support
+
+For questions or issues, please contact the development team.
+
+---
+
+Built with ❤️ for The Kemmal Onuoha Company
