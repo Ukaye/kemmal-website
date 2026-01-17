@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import Button from "@/components/ui/Button";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -35,67 +34,64 @@ export default function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "bg-white shadow-md py-3"
-          : "bg-transparent py-4"
-      }`}
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3"
+      style={{
+        backgroundColor: "#051932CC",
+        backdropFilter: "blur(4px)",
+      }}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          {/* Logo - Only image, increased size */}
+          <Link href="/" className="flex items-center">
             <Image
               src="/images/logo.png"
               alt="Kemmal Onuoha Company Logo"
-              width={48}
-              height={48}
-              className="w-10 h-10 md:w-12 md:h-12"
+              width={200}
+              height={80}
+              className="h-16 md:h-20 w-auto"
+              style={{ width: "auto", height: "80px" }}
             />
-            <div className={`hidden sm:block ${isScrolled ? "text-primary-dark" : "text-white"}`}>
-              <span className="text-sm font-medium tracking-wide">THE</span>
-              <p className="text-lg font-bold leading-tight">
-                <span className="text-primary-gold">KEMMAL</span>
-                <br />
-                <span>ONUOHA</span>
-              </p>
-            </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={`text-sm font-medium transition-colors duration-200 hover:text-primary-gold ${
-                  pathname === link.href
-                    ? "text-primary-gold"
-                    : isScrolled
-                    ? "text-primary-dark"
-                    : "text-white"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          {/* Desktop Navigation + CTA - Aligned Right */}
+          <div className="hidden lg:flex items-center gap-6">
+            <nav className="flex items-center gap-6">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-medium transition-colors duration-200 hover:text-primary-gold"
+                  style={{
+                    color: pathname === link.href ? "#D4A43C" : "#FFFFFF",
+                  }}
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
+            {/* CTA Button with gradient - white text */}
             <Link href="/book-consultation">
-              <Button variant="primary" size="md">
+              <button
+                className="font-semibold text-white transition-all duration-300 hover:opacity-90 whitespace-nowrap text-sm"
+                style={{
+                  minWidth: "179px",
+                  height: "45px",
+                  padding: "12px 16px",
+                  borderRadius: "8px",
+                  background: "linear-gradient(90deg, #C18F1C 0%, #EBA609 100%)",
+                }}
+              >
                 Book a Consultation
-              </Button>
+              </button>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              isScrolled ? "text-primary-dark" : "text-white"
-            }`}
+            className="lg:hidden p-2 rounded-lg transition-colors text-white"
             aria-label="Toggle menu"
           >
             {isMobileMenuOpen ? (
@@ -134,9 +130,17 @@ export default function Header() {
                 ))}
                 <div className="pt-4 border-t border-border-light mt-2">
                   <Link href="/book-consultation" className="block">
-                    <Button variant="primary" size="md" className="w-full">
+                    <button
+                      className="w-full font-semibold text-white"
+                      style={{
+                        height: "45px",
+                        padding: "12px 16px",
+                        borderRadius: "8px",
+                        background: "linear-gradient(90deg, #C18F1C 0%, #EBA609 100%)",
+                      }}
+                    >
                       Book a Consultation
-                    </Button>
+                    </button>
                   </Link>
                 </div>
               </div>
@@ -147,4 +151,3 @@ export default function Header() {
     </header>
   );
 }
-

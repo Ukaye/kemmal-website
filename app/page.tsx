@@ -17,7 +17,7 @@ export default function Home() {
       <ClientLogos />
       <EventsCarousel />
       <Testimonials />
-      <FutureReadyCTA />
+      {/* <FutureReadyCTA /> */}
     </>
   );
 }

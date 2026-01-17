@@ -3,7 +3,6 @@
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import EventRegistrationForm from "@/components/forms/EventRegistrationForm";
-import DotPattern from "@/components/ui/DotPattern";
 
 // Event data - in production, this would come from a database/API
 const events: Record<string, { title: string; description: string }> = {
@@ -45,25 +44,25 @@ export default function EventRegistrationPage() {
 
   return (
     <div className="min-h-screen bg-primary-dark relative overflow-hidden">
-      {/* Decorative Elements */}
+      {/* Decorative White Dot Patterns */}
       <div
-        className="absolute top-0 left-0 w-64 h-64 opacity-30"
+        className="absolute top-0 left-0 w-48 h-48 md:w-64 md:h-64 opacity-30"
         style={{
-          backgroundImage: `radial-gradient(rgba(255,255,255,0.3) 2px, transparent 2px)`,
-          backgroundSize: "12px 12px",
+          backgroundImage: `radial-gradient(rgba(255,255,255,0.4) 2px, transparent 2px)`,
+          backgroundSize: "14px 14px",
         }}
       />
       <div
-        className="absolute bottom-0 right-0 w-64 h-64 opacity-30"
+        className="absolute bottom-0 right-0 w-48 h-48 md:w-64 md:h-64 opacity-30"
         style={{
-          backgroundImage: `radial-gradient(rgba(255,255,255,0.3) 2px, transparent 2px)`,
-          backgroundSize: "12px 12px",
+          backgroundImage: `radial-gradient(rgba(255,255,255,0.4) 2px, transparent 2px)`,
+          backgroundSize: "14px 14px",
         }}
       />
 
       {/* Content */}
       <div className="container mx-auto px-4 md:px-6 lg:px-8 pt-32 pb-24 relative z-10">
-        <div className="max-w-xl mx-auto">
+        <div className="max-w-md mx-auto">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -74,7 +73,7 @@ export default function EventRegistrationPage() {
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
               {event.title}
             </h1>
-            <p className="text-gray-300">{event.description}</p>
+            <p className="text-gray-400">{event.description}</p>
           </motion.div>
 
           {/* Form */}
@@ -90,4 +89,3 @@ export default function EventRegistrationPage() {
     </div>
   );
 }
-

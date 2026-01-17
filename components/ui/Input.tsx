@@ -25,8 +25,8 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         <input
           ref={ref}
           id={inputId}
-          className={`w-full px-4 py-3 rounded-lg border border-border-light bg-white text-text-dark placeholder-text-light/70 transition-all duration-200 focus:outline-none focus:border-primary-gold focus:ring-2 focus:ring-primary-gold/20 ${
-            error ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""
+          className={`w-full px-4 py-3.5 rounded-xl border-0 bg-[#F5F5F5] text-text-dark placeholder-text-light/70 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 ${
+            error ? "ring-2 ring-red-500" : ""
           } ${className}`}
           {...props}
         />
@@ -64,8 +64,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           ref={ref}
           id={textareaId}
-          className={`w-full px-4 py-3 rounded-lg border border-border-light bg-white text-text-dark placeholder-text-light/70 transition-all duration-200 focus:outline-none focus:border-primary-gold focus:ring-2 focus:ring-primary-gold/20 resize-y min-h-[120px] ${
-            error ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""
+          className={`w-full px-4 py-3.5 rounded-xl border-0 bg-[#F5F5F5] text-text-dark placeholder-text-light/70 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 resize-y min-h-[120px] ${
+            error ? "ring-2 ring-red-500" : ""
           } ${className}`}
           {...props}
         />
@@ -109,13 +109,13 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           <select
             ref={ref}
             id={selectId}
-            className={`w-full px-4 py-3 rounded-lg border border-border-light bg-white text-text-dark transition-all duration-200 focus:outline-none focus:border-primary-gold focus:ring-2 focus:ring-primary-gold/20 appearance-none cursor-pointer ${
-              error ? "border-red-500 focus:border-red-500 focus:ring-red-500/20" : ""
+            className={`w-full px-4 py-3.5 rounded-xl border-0 bg-[#F5F5F5] text-text-dark transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-gold/50 appearance-none cursor-pointer ${
+              error ? "ring-2 ring-red-500" : ""
             } ${className}`}
             {...props}
           >
             {placeholder && (
-              <option value="" disabled>
+              <option value="" disabled className="text-text-light/70">
                 {placeholder}
               </option>
             )}
@@ -125,7 +125,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
               </option>
             ))}
           </select>
-          <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+          <div className="absolute inset-y-0 right-0 flex items-center pr-4 pointer-events-none">
             <svg
               className="w-5 h-5 text-text-light"
               fill="none"
@@ -151,4 +151,3 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
 );
 
 Select.displayName = "Select";
-

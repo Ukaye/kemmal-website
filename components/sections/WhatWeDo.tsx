@@ -1,14 +1,15 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { 
   TrendingUp, 
   Users, 
   BookOpen, 
   FileText, 
-  BarChart3 
+  BarChart3,
+  ArrowRight
 } from "lucide-react";
-import { ServiceCard } from "@/components/ui/Card";
 
 const services = [
   {
@@ -50,8 +51,8 @@ const services = [
 
 export default function WhatWeDoSection() {
   return (
-    <section className="section bg-bg-section">
-      <div className="container mx-auto px-4 md:px-6 lg:px-8">
+    <section className="section bg-white">
+      <div className="container mx-auto px-8 md:px-12 lg:px-20">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -60,7 +61,14 @@ export default function WhatWeDoSection() {
           transition={{ duration: 0.6 }}
           className="text-center max-w-2xl mx-auto mb-12"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-dark mb-4">
+          <h2 
+            className="font-bold text-primary-dark mb-4"
+            style={{
+              fontFamily: "var(--font-merriweather), Merriweather, serif",
+              fontSize: "32px",
+              lineHeight: "120%",
+            }}
+          >
             What We Do
           </h2>
           <p className="text-text-light">
@@ -68,8 +76,8 @@ export default function WhatWeDoSection() {
           </p>
         </motion.div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Services Grid - 2 column on desktop, 5th item centered */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -77,14 +85,35 @@ export default function WhatWeDoSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`p-6 group ${
+                index === services.length - 1 
+                  ? "md:col-span-2 md:max-w-[calc(50%-16px)] md:mx-auto" 
+                  : ""
+              }`}
             >
-              <ServiceCard
-                icon={service.icon}
-                title={service.title}
-                description={service.description}
-                link={service.link}
-                linkText="Explore Service"
-              />
+              {/* Icon - minimal light gray background */}
+              <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center mb-4 text-primary-dark">
+                {service.icon}
+              </div>
+              
+              {/* Title */}
+              <h3 className="text-lg font-semibold text-primary-dark mb-2">
+                {service.title}
+              </h3>
+              
+              {/* Description */}
+              <p className="text-text-light text-sm mb-4 leading-relaxed">
+                {service.description}
+              </p>
+              
+              {/* Link */}
+              <Link
+                href={service.link}
+                className="inline-flex items-center gap-2 text-primary-gold text-sm font-semibold tracking-wide uppercase hover:gap-3 transition-all duration-300"
+              >
+                Explore Solution
+                <ArrowRight className="w-4 h-4" />
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -92,4 +121,3 @@ export default function WhatWeDoSection() {
     </section>
   );
 }
-

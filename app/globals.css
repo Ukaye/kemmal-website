@@ -12,7 +12,8 @@
   --color-text-white: #FFFFFF;
   --color-border-light: #E5E7EB;
   --color-border-gold: #D4A43C;
-  --font-family-sans: 'DM Sans', system-ui, sans-serif;
+  --font-family-sans: var(--font-ibm-plex-sans), 'IBM Plex Sans', system-ui, sans-serif;
+  --font-family-heading: var(--font-merriweather), 'Merriweather', Georgia, serif;
 }
 
 /* Ensure custom color classes work */
@@ -41,7 +42,7 @@ html {
 body {
   background: #FFFFFF;
   color: #1A2332;
-  font-family: 'DM Sans', system-ui, sans-serif;
+  font-family: var(--font-ibm-plex-sans), 'IBM Plex Sans', system-ui, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -49,9 +50,19 @@ body {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-merriweather), 'Merriweather', Georgia, serif !important;
   font-weight: 700;
   line-height: 1.2;
   color: #1A2332;
+}
+
+/* Font utility classes */
+.font-heading {
+  font-family: var(--font-merriweather), 'Merriweather', Georgia, serif !important;
+}
+
+.font-body {
+  font-family: var(--font-ibm-plex-sans), 'IBM Plex Sans', system-ui, sans-serif !important;
 }
 
 h1 {

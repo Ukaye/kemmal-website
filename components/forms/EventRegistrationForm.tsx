@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Input, Select } from "@/components/ui/Input";
-import Button from "@/components/ui/Button";
 import { sendEventRegistration, initEmailJS } from "@/lib/emailjs";
 
 const companySectors = [
@@ -176,15 +175,18 @@ export default function EventRegistrationForm({
         required
       />
 
-      <Button
+      <button
         type="submit"
-        variant="primary"
-        size="lg"
-        className="w-full"
-        isLoading={isSubmitting}
+        disabled={isSubmitting}
+        className="w-full font-semibold text-white transition-all duration-300 hover:opacity-90 disabled:opacity-50"
+        style={{
+          padding: "16px 24px",
+          borderRadius: "8px",
+          background: "linear-gradient(180deg, rgba(5, 25, 50, 0.9) 0%, rgba(12, 61, 123, 0.9) 100%)",
+        }}
       >
-        Sign Me Up
-      </Button>
+        {isSubmitting ? "Submitting..." : "Sign Me Up"}
+      </button>
     </form>
   );
 }

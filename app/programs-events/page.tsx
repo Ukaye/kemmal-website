@@ -1,12 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
 import { ClientLogos, CTA } from "@/components/sections";
-import { ChevronLeft, ChevronRight, Calendar, Clock } from "lucide-react";
+import { ChevronLeft, ChevronRight, Calendar, Clock, ArrowRight } from "lucide-react";
 
 const featuredEvents = [
   {
@@ -54,12 +54,25 @@ const trainingPrograms = [
 
 export default function ProgramsEventsPage() {
   const [currentEventIndex, setCurrentEventIndex] = useState(0);
+  const [autoplay, setAutoplay] = useState(true);
+
+  useEffect(() => {
+    if (!autoplay) return;
+    
+    const interval = setInterval(() => {
+      setCurrentEventIndex((prev) => (prev + 1) % featuredEvents.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [autoplay]);
 
   const nextEvent = () => {
+    setAutoplay(false);
     setCurrentEventIndex((prev) => (prev + 1) % featuredEvents.length);
   };
 
   const prevEvent = () => {
+    setAutoplay(false);
     setCurrentEventIndex(
       (prev) => (prev - 1 + featuredEvents.length) % featuredEvents.length
     );
@@ -69,8 +82,8 @@ export default function ProgramsEventsPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative min-h-[50vh] flex items-center bg-primary-dark pt-24">
+      {/* Hero - Dark background */}
+      <section className="relative bg-primary-dark pt-32 pb-12">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -80,7 +93,14 @@ export default function ProgramsEventsPage() {
             <p className="text-primary-gold text-sm tracking-widest uppercase mb-4">
               Explore our Events
             </p>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">
+            <h1 
+              className="font-bold text-white leading-tight"
+              style={{
+                fontFamily: "var(--font-merriweather), Merriweather, serif",
+                fontSize: "32px",
+                lineHeight: "120%",
+              }}
+            >
               Upcoming Training Programs & Events
             </h1>
           </motion.div>
@@ -88,12 +108,12 @@ export default function ProgramsEventsPage() {
       </section>
 
       {/* Featured Event Carousel */}
-      <section className="bg-white py-12">
+      <section className="bg-primary-dark pb-12">
         <div className="container mx-auto px-4 md:px-6 lg:px-8">
-          <div className="relative bg-gradient-to-r from-primary-dark to-[#2a3548] rounded-2xl overflow-hidden">
-            <div className="grid md:grid-cols-2 gap-8 p-6 md:p-10">
+          <div className="relative bg-gradient-to-r from-[#1e2a3d] to-[#2a3548] rounded-2xl overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-0">
               {/* Event Image */}
-              <div className="aspect-video md:aspect-auto rounded-xl overflow-hidden bg-black/30 relative">
+              <div className="aspect-video md:aspect-auto md:h-full relative">
                 <Image
                   src="/images/events/event.png"
                   alt={currentEvent.title}
@@ -110,25 +130,32 @@ export default function ProgramsEventsPage() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3 }}
-                  className="flex flex-col justify-center text-white"
+                  className="flex flex-col justify-center text-white p-6 md:p-10"
                 >
+                  {/* Tags */}
                   <div className="flex gap-2 mb-4">
                     {currentEvent.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 bg-primary-gold/20 text-primary-gold rounded-full text-xs font-medium"
+                        className="px-3 py-1 bg-primary-gold/20 text-primary-gold rounded text-xs font-medium"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
+
+                  {/* Title */}
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">
                     {currentEvent.title}
                   </h2>
-                  <p className="text-gray-300 mb-4">
+
+                  {/* Description */}
+                  <p className="text-gray-300 mb-6 leading-relaxed">
                     {currentEvent.description}
                   </p>
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-6">
+
+                  {/* Date & Time */}
+                  <div className="flex flex-wrap gap-4 text-sm text-gray-300 mb-6">
                     <span className="flex items-center gap-2">
                       <Calendar className="w-4 h-4" />
                       {currentEvent.date}
@@ -138,37 +165,40 @@ export default function ProgramsEventsPage() {
                       {currentEvent.time}
                     </span>
                   </div>
-                  <Link href={`/register/${currentEvent.id}`}>
-                    <Button
-                      variant="outline"
-                      className="border-white text-white hover:bg-white hover:text-primary-dark w-fit"
-                    >
-                      Register Now
-                      <ChevronRight className="w-4 h-4 ml-2" />
-                    </Button>
+
+                  {/* Register Link */}
+                  <Link 
+                    href={`/register/${currentEvent.id}`}
+                    className="inline-flex items-center gap-2 text-white hover:text-primary-gold transition-colors group w-fit"
+                  >
+                    <span className="font-medium">Register Now</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </Link>
                 </motion.div>
               </AnimatePresence>
             </div>
 
             {/* Navigation */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-4">
+            <div className="absolute bottom-4 left-4 md:left-1/4 flex items-center gap-4">
               <button
                 onClick={prevEvent}
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors text-white"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors text-white"
                 aria-label="Previous event"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-5 h-5" />
               </button>
               <div className="flex gap-2">
                 {featuredEvents.map((_, idx) => (
                   <button
                     key={idx}
-                    onClick={() => setCurrentEventIndex(idx)}
-                    className={`w-2 h-2 rounded-full transition-colors ${
+                    onClick={() => {
+                      setAutoplay(false);
+                      setCurrentEventIndex(idx);
+                    }}
+                    className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
                       idx === currentEventIndex
-                        ? "bg-primary-gold"
-                        : "bg-white/30"
+                        ? "bg-primary-gold w-6"
+                        : "bg-white/30 hover:bg-white/50"
                     }`}
                     aria-label={`Go to event ${idx + 1}`}
                   />
@@ -176,10 +206,10 @@ export default function ProgramsEventsPage() {
               </div>
               <button
                 onClick={nextEvent}
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors text-white"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-white/20 transition-colors text-white"
                 aria-label="Next event"
               >
-                <ChevronRight className="w-4 h-4" />
+                <ChevronRight className="w-5 h-5" />
               </button>
             </div>
           </div>
@@ -199,7 +229,14 @@ export default function ProgramsEventsPage() {
             <p className="text-primary-gold text-sm tracking-widest uppercase mb-2">
               Trainings
             </p>
-            <h2 className="text-3xl md:text-4xl font-bold text-primary-dark">
+            <h2 
+              className="font-bold text-primary-dark"
+              style={{
+                fontFamily: "var(--font-merriweather), Merriweather, serif",
+                fontSize: "32px",
+                lineHeight: "120%",
+              }}
+            >
               Join a Training Program
             </h2>
           </motion.div>
@@ -212,7 +249,7 @@ export default function ProgramsEventsPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl overflow-hidden border border-border-light hover:border-primary-gold transition-colors"
+                className="bg-white rounded-xl overflow-hidden border border-border-light hover:border-primary-gold hover:shadow-lg transition-all duration-300"
               >
                 {/* Training Image */}
                 <div className="aspect-[4/3] bg-bg-section relative">
@@ -223,20 +260,23 @@ export default function ProgramsEventsPage() {
                     className="object-cover"
                   />
                 </div>
-                <div className="p-4">
+                <div className="p-5">
                   <h3 className="font-semibold text-primary-dark mb-1">
                     {program.title}
                   </h3>
                   <p className="text-sm text-text-light mb-4">{program.date}</p>
                   <Link href={`/register/${program.id}`}>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-primary-dark text-primary-dark hover:bg-primary-dark hover:text-white"
+                    <button
+                      className="inline-flex items-center gap-2 font-semibold text-white transition-all duration-300 hover:opacity-90"
+                      style={{
+                        padding: "12px 24px",
+                        borderRadius: "8px",
+                        background: "linear-gradient(180deg, rgba(5, 25, 50, 0.9) 0%, rgba(12, 61, 123, 0.9) 100%)",
+                      }}
                     >
                       Register Now
-                      <ChevronRight className="w-4 h-4 ml-1" />
-                    </Button>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
                   </Link>
                 </div>
               </motion.div>
@@ -246,8 +286,7 @@ export default function ProgramsEventsPage() {
       </section>
 
       <ClientLogos variant="dark" />
-      <CTA />
+      {/* <CTA /> */}
     </>
   );
 }
-

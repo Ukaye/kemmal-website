@@ -32,9 +32,8 @@ interface ClientLogosProps {
 export default function ClientLogos({ variant = "light" }: ClientLogosProps) {
   return (
     <section
-      className={`section ${
-        variant === "dark" ? "bg-primary-dark" : "bg-white"
-      }`}
+      className="section"
+      style={{ backgroundColor: "#111518" }}
     >
       <div className="container mx-auto px-4 md:px-6 lg:px-8">
         {/* Header */}
@@ -45,17 +44,19 @@ export default function ClientLogos({ variant = "light" }: ClientLogosProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <p
-            className={`text-sm tracking-widest uppercase mb-2 ${
-              variant === "dark" ? "text-primary-gold" : "text-primary-gold"
-            }`}
-          >
+          <p className="text-sm tracking-widest uppercase mb-2 text-primary-gold">
             Globally Recognized
           </p>
           <h2
-            className={`text-2xl md:text-3xl font-bold ${
-              variant === "dark" ? "text-white" : "text-primary-dark"
-            }`}
+            className="font-bold"
+            style={{
+              fontFamily: "var(--font-merriweather), Merriweather, serif",
+              fontSize: "32px",
+              lineHeight: "120%",
+              color: "#FFFFFF",
+              marginTop: "24px",
+              marginBottom: "32px",
+            }}
           >
             We have supported national and multinational
             <br />
@@ -69,9 +70,7 @@ export default function ClientLogos({ variant = "light" }: ClientLogosProps) {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className={`rounded-2xl p-8 ${
-            variant === "dark" ? "bg-white/5" : "bg-bg-section"
-          }`}
+          className="rounded-2xl p-8 bg-white"
         >
           <div className="flex items-center justify-center">
             <Image

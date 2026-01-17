@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { DM_Sans } from "next/font/google";
+import { Merriweather, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const merriweather = Merriweather({
+  variable: "--font-merriweather",
+  subsets: ["latin"],
+  weight: ["400", "700", "900"],
+});
+
+const ibmPlexSans = IBM_Plex_Sans({
+  variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
@@ -29,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${dmSans.variable} font-sans antialiased`}>
+      <body className={`${merriweather.variable} ${ibmPlexSans.variable} font-sans antialiased`}>
         <Header />
         <main>{children}</main>
         <Footer />
