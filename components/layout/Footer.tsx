@@ -57,13 +57,13 @@ export default function Footer() {
 
             <div className="space-y-4">
               <a
-                href="mailto:info@kemmal.placeholder"
+                href="mailto:info@kemmalonuoha.com"
                 className="flex items-center gap-3 text-gray-300 hover:text-primary-gold transition-colors group"
               >
                 <div className="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center group-hover:bg-primary-gold transition-colors">
                   <Mail className="w-4 h-4" />
                 </div>
-                <span className="text-sm">info@kemmal.placeholder</span>
+                <span className="text-sm">info@kemmalonuoha.com</span>
               </a>
               <a
                 href="tel:+2348129423447"

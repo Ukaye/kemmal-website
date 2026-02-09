@@ -32,7 +32,7 @@ export const sendConsultationForm = async (formData: {
       EMAILJS_CONFIG.serviceId,
       EMAILJS_CONFIG.consultationTemplateId,
       {
-        to_email: "info@kemmal.placeholder",
+        to_email: "info@kemmalonuoha.com",
         from_name: formData.fullName,
         from_email: formData.email,
         phone_number: formData.phoneNumber,
@@ -63,7 +63,7 @@ export const sendEventRegistration = async (formData: {
       EMAILJS_CONFIG.serviceId,
       EMAILJS_CONFIG.eventTemplateId,
       {
-        to_email: "info@kemmal.placeholder",
+        to_email: "info@kemmalonuoha.com",
         from_name: formData.fullName,
         from_email: formData.email,
         phone_number: formData.phoneNumber,
